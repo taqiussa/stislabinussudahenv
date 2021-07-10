@@ -34,39 +34,51 @@ class WalikelasController extends Controller
         switch ($bulan) {
             case '1':
                 $bulansurat = 'I';
+                $arrayguna = [1,7,8,9,10,11,12];
                 break;
             case '2':
                 $bulansurat = 'II';
+                $arrayguna = [1,2,7,8,9,10,11,12];
                 break;
             case '3':
                 $bulansurat = 'III';
+                $arrayguna = [1,2,3,7,8,9,10,11,12];
                 break;
             case '4':
                 $bulansurat = 'IV';
+                $arrayguna = [1,2,3,4,7,8,9,10,11,12];
                 break;
             case '5':
                 $bulansurat = 'V';
+                $arrayguna = [1,2,3,4,5,7,8,9,10,11,12];
                 break;
             case '6':
                 $bulansurat = 'VI';
+                $arrayguna = [1,2,3,4,5,6,7,8,9,10,11,12];
                 break;
             case '7':
                 $bulansurat = 'VII';
+                $arrayguna = [7];
                 break;
             case '8':
                 $bulansurat = 'VIII';
+                $arrayguna = [7,8];
                 break;
             case '9':
                 $bulansurat = 'IX';
+                $arrayguna = [7,8,9];
                 break;
             case '10':
                 $bulansurat = 'X';
+                $arrayguna = [7,8,9,10];
                 break;
             case '11':
                 $bulansurat = 'XI';
+                $arrayguna = [7,8,9,10,11];
                 break;
             case '12':
                 $bulansurat = 'XII';
+                $arrayguna = [7,8,9,10,11,12];
                 break;
         }
         $cari = Siswa::findOrFail($id);
@@ -83,7 +95,8 @@ class WalikelasController extends Controller
             'tingkatkelas' => $ckelas->tingkat,
             'jurusankelas' => $ckelas->jurusan,
             'nis' => $cari->nis,
-            'gunabayarspp' => Gunabayar::where('ket', '1')->orderBy('urut', 'asc')->get(),
+            'gunabayarspp' => Gunabayar::whereIn('id',$arrayguna)->orderBy('urut', 'asc')->get(),
+            'gunabayarsppall' => Gunabayar::where('ket','1')->orderBy('urut', 'asc')->get(),
             'gunabayarug' => Gunabayar::where('ket', '2')->get(),
         ];
         return view('pages.cetakpdf.pdf', $data);

@@ -86,7 +86,7 @@ Assalamu'alaikum Wr. Wb.<br>
                 ->value('id');
         @endphp
         @if ($tingkatkelas == 'XII')
-            @foreach ($gunabayarspp as $g)
+            @foreach ($gunabayarsppall as $g)
                 @php
                     $p = App\Models\Pembayaran::where('nis',$nis)
                     ->where('idgunabayar',$g->id)
@@ -106,7 +106,7 @@ Assalamu'alaikum Wr. Wb.<br>
                     </tr>
                 @endif
             @endforeach
-            @foreach ($gunabayarspp as $g)
+            @foreach ($gunabayarsppall as $g)
                 @php
                     $p = App\Models\Pembayaran::where('nis',$nis)
                     ->where('idgunabayar',$g->id)
@@ -147,7 +147,7 @@ Assalamu'alaikum Wr. Wb.<br>
                 @endif
             @endforeach
         @elseif ($tingkatkelas == 'XI')
-            @foreach ($gunabayarspp as $g)
+            @foreach ($gunabayarsppall as $g)
                 @php
                     $p = App\Models\Pembayaran::where('nis',$nis)
                     ->where('idgunabayar',$g->id)

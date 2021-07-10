@@ -8,6 +8,7 @@ use App\Models\Pembayaran;
 use App\Models\Pengeluaran;
 use App\Models\Siswa;
 use App\Models\User;
+use App\Models\Keterangan;
 use PDF;
 use Illuminate\Support\Facades\App;
 
@@ -67,6 +68,12 @@ class TuController extends Controller
     {
         return view('pages.binus.pembayaranperkelas-data', [
             'pembayaranperkelas' => Pembayaran::class
+        ]);
+    }
+    public function keterangan()
+    {
+        return view('pages.binus.keterangan-data', [
+            'keterangan' => Keterangan::class
         ]);
     }
     // public function pdf()
