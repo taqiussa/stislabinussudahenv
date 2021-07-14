@@ -37,6 +37,8 @@ Route::group(["middleware" => ['auth:sanctum', 'verified']], function () {
         Route::get('/pengeluaran', [TuController::class, 'pengeluaran'])->name('pengeluaran');
         Route::get('/keuangan', [TuController::class, 'keuangan'])->name('keuangan');
         Route::get('/keterangan', [TuController::class, 'keterangan'])->name('keterangan');
+        Route::get('/keterangan/new', [TuController::class, 'keterangannew'])->name('keterangan.new');
+        Route::get('/naikkelas', [TuController::class, 'naikkelas'])->name('naikkelas');
         Route::resource('tu', 'App\Http\Controllers\TuController');
     });
     Route::group(['middleware' => ['role:panitia']], function () {

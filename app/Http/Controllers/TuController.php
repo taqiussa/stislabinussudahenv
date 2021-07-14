@@ -76,6 +76,14 @@ class TuController extends Controller
             'keterangan' => Keterangan::class
         ]);
     }
+    public function keterangannew()
+    {
+        return view('pages.binus.keterangannew-data');
+    }
+    public function naikkelas()
+    {
+        return view('pages.binus.naikkelas-data');
+    }
     // public function pdf()
     // {
 

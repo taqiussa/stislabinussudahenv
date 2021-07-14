@@ -97,7 +97,7 @@ class Tableketerangan extends Component
                     "keterangans" => $keterangans,
                     "data" => array_to_object([
                         'href' => [
-                            'create_new' => 'showModal()',
+                            'create_new' => route('keterangan.new'),
                             'create_new_text' => 'Buat keterangan',
                             'export' => '#',
                             'export_text' => 'Disabled'
