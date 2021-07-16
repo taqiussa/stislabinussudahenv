@@ -14,7 +14,11 @@ class Tableketerangan extends Component
     public $name;
     public $idketerangan;
     public $ket;
-    public $jenisket;
+    public $jenisket='-';
+    public $spp;
+    public $uanggedung;
+    public $alatpraktek;
+    public $seragam;
     public $simpan = 'Simpan';
 
     public $isOpen = 0;
@@ -27,12 +31,22 @@ class Tableketerangan extends Component
 
     protected $listeners = ["deleteItem" => "delete_item"];
     protected $rules = [
-        'jenisket' => 'required',
         'ket' => 'required',
+        'spp' => 'required|numeric',
+        'uanggedung' => 'required|numeric',
+        'alatpraktek' => 'required|numeric',
+        'seragam' => 'required|numeric',
     ];
     protected $messages = [
-        'jenisket.required' => 'Isi jenisket',
         'ket.required' => 'Isi ket',
+        'spp.required' => 'Isi SPP',
+        'uanggedung.required' => 'Isi Uang Gedung',
+        'alatpraktek.required' => 'Isi Alat Praktek',
+        'seragam.required' => 'Isi Seragam',
+        'spp.numeric' => 'Harus Angka',
+        'uanggedung.numeric' => 'Harus Angka',
+        'alatpraktek.numeric' => 'Harus Angka',
+        'seragam.numeric' => 'Harus Angka',
     ];
 
     public function store()
@@ -40,6 +54,11 @@ class Tableketerangan extends Component
         $data = [
             'ket' => $this->ket,
             'jenisket' => $this->jenisket,
+            'spp' => $this->spp,
+            'uanggedung' => $this->uanggedung,
+            'alatpraktek' => $this->alatpraktek,
+            'seragam' => $this->seragam,
+            
         ];
 
         $this->validate();
@@ -54,10 +73,13 @@ class Tableketerangan extends Component
     {
         $cari = Keterangan::findOrFail($id);
         $this->idketerangan = $id;
-        $this->jenisket = $cari->jenisket;
         $this->ket = $cari->ket;
+        $this->spp = $cari->spp;
+        $this->uanggedung = $cari->uanggedung;
+        $this->alatpraktek = $cari->alatpraktek;
+        $this->seragam = $cari->seragam;
         $this->simpan = 'Update';
-        $this->button = create_button('update', "Gunabayar");
+        $this->button = create_button('update', "Keterangan");
         $this->showModal();
     }
 
@@ -97,7 +119,7 @@ class Tableketerangan extends Component
                     "keterangans" => $keterangans,
                     "data" => array_to_object([
                         'href' => [
-                            'create_new' => route('keterangan.new'),
+                            'create_new' => 'showModal()',
                             'create_new_text' => 'Buat keterangan',
                             'export' => '#',
                             'export_text' => 'Disabled'
@@ -134,8 +156,11 @@ class Tableketerangan extends Component
     public function clearVar()
     {
         $this->idketerangan = '';
-        $this->jenisket = '';
         $this->ket = '';
+        $this->spp = 0;
+        $this->uanggedung = 0;
+        $this->alatpraktek = 0;
+        $this->seragam = 0;
         $this->simpan = 'Simpan';
         $this->button = create_button($this->action, "keterangan Baru");
     }

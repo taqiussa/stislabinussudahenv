@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTimestampsToSiswasementaraTable extends Migration
+class AddKeteranganIdToSiswaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddTimestampsToSiswasementaraTable extends Migration
      */
     public function up()
     {
-        Schema::table('siswasementara', function (Blueprint $table) {
-            $table->timestamps();
+        Schema::table('siswa', function (Blueprint $table) {
+            $table->integer('keterangan_id');
         });
     }
 
@@ -25,8 +25,8 @@ class AddTimestampsToSiswasementaraTable extends Migration
      */
     public function down()
     {
-        Schema::table('siswasementara', function (Blueprint $table) {
-            //
+        Schema::table('siswa', function (Blueprint $table) {
+            $table->dropColumn('keterangan_id');
         });
     }
 }
