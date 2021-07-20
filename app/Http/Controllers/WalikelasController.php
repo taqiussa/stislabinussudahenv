@@ -6,6 +6,7 @@ use App\Models\Siswa;
 use Illuminate\Http\Request;
 use App\Models\Kelas;
 use App\Models\Gunabayar;
+use App\Models\Keterangan;
 
 class WalikelasController extends Controller
 {
@@ -82,6 +83,7 @@ class WalikelasController extends Controller
                 break;
         }
         $cari = Siswa::findOrFail($id);
+        $carik = Keterangan::findOrFail($cari->keterangan_id);
         $ckelas = Kelas::findOrFail($cari->idkelas);
         $kelas = $ckelas->tingkat . '-' . $ckelas->jurusan;
         $tahunsurat = gmdate('Y');
@@ -95,6 +97,10 @@ class WalikelasController extends Controller
             'tingkatkelas' => $ckelas->tingkat,
             'jurusankelas' => $ckelas->jurusan,
             'nis' => $cari->nis,
+            'spp' => $carik->spp,
+            'uanggedung' => $carik->uanggedung,
+            'alatpraktek' => $carik->alatpraktek,
+            'seragam' => $carik->seragam,
             'gunabayarspp' => Gunabayar::whereIn('id',$arrayguna)->orderBy('urut', 'asc')->get(),
             'gunabayarsppall' => Gunabayar::where('ket','1')->orderBy('urut', 'asc')->get(),
             'gunabayarug' => Gunabayar::where('ket', '2')->get(),

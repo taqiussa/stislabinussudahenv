@@ -92,7 +92,7 @@ Assalamu'alaikum Wr. Wb.<br>
                     ->where('idgunabayar',$g->id)
                     ->where('idkelas',$idkelasx)
                     ->sum('jumlahbayar');
-                    $cek = intval($g->wajibbayar) - intval($p);
+                    $cek = intval($spp) - intval($p);
                 @endphp
                 @if ($cek == 0)
                 @else
@@ -112,7 +112,7 @@ Assalamu'alaikum Wr. Wb.<br>
                     ->where('idgunabayar',$g->id)
                     ->where('idkelas',$idkelasxi)
                     ->sum('jumlahbayar');
-                    $cek = intval($g->wajibbayar) - intval($p);
+                    $cek = intval($spp) - intval($p);
                 @endphp
                 @if ($cek == 0)
                 @else
@@ -132,7 +132,7 @@ Assalamu'alaikum Wr. Wb.<br>
                     ->where('idgunabayar',$g->id)
                     ->where('idkelas',$idkelas)
                     ->sum('jumlahbayar');
-                    $cek = intval($g->wajibbayar) - intval($p);
+                    $cek = intval($spp) - intval($p);
                 @endphp
                 @if ($cek == 0)
                 @else
@@ -153,7 +153,7 @@ Assalamu'alaikum Wr. Wb.<br>
                     ->where('idgunabayar',$g->id)
                     ->where('idkelas',$idkelasx)
                     ->sum('jumlahbayar');
-                    $cek = intval($g->wajibbayar) - intval($p);
+                    $cek = intval($spp) - intval($p);
                 @endphp
                 @if ($cek == 0)
                 @else
@@ -173,7 +173,7 @@ Assalamu'alaikum Wr. Wb.<br>
                     ->where('idgunabayar',$g->id)
                     ->where('idkelas',$idkelasxi)
                     ->sum('jumlahbayar');
-                    $cek = intval($g->wajibbayar) - intval($p);
+                    $cek = intval($spp) - intval($p);
                 @endphp
                 @if ($cek == 0)
                 @else
@@ -194,7 +194,7 @@ Assalamu'alaikum Wr. Wb.<br>
                     ->where('idgunabayar',$g->id)
                     ->where('idkelas',$idkelas)
                     ->sum('jumlahbayar');
-                    $cek = intval($g->wajibbayar) - intval($p);
+                    $cek = intval($spp) - intval($p);
                 @endphp
                 @if ($cek == 0)
                 @else
@@ -215,7 +215,15 @@ Assalamu'alaikum Wr. Wb.<br>
                 $p = App\Models\Pembayaran::where('nis',$nis)
                 ->where('idgunabayar',$g->id)
                 ->sum('jumlahbayar');
-                $cek = intval($g->wajibbayar) - intval($p);
+                if ($g->gunabayar == 'Uang Gedung') {
+                    $cek = intval($uanggedung) - intval($p);
+                }
+                elseif ($g->gunabayar == 'Alat Praktek') {
+                    $cek = intval($alatpraktek) - intval($p);
+                }
+                else {
+                    $cek = intval($seragam) - intval($p);
+                };
             @endphp
             @if ($cek == 0 || $cek <=0)
             @else

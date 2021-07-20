@@ -10,7 +10,8 @@ class Siswa extends Model
     use HasFactory;
     protected $table = 'siswa';
     protected $guarded = ['id', 'created_at', 'updated_at'];
-    public function keterangan(){
+    public function keterangan()
+    {
         return $this->belongsTo(Keterangan::class);
     }
     public static function search($query)

@@ -55,7 +55,7 @@ class Tablepembayaranperkelas extends Component
                         'siswa.nis as nis',
                         'siswa.tahun as tahun',
                         'siswa.ortu as ortu',
-                        'siswa.ket as ket',
+                        'siswa.keterangan_id as keterangan_id',
                         'siswa.idkelas as idkelas',
                         'kelas.tingkat as tingkat',
                         'kelas.jurusan as jurusan',

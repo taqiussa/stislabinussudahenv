@@ -20,7 +20,7 @@ class Tablesiswa extends Component
     public $idkelas;
     public $tahun;
     public $ortu;
-    public $ket;
+    public $keterangan_id;
     public $simpan = 'Simpan';
 
     public $isOpen = 0;
@@ -54,8 +54,8 @@ class Tablesiswa extends Component
             'nama' => $this->nama,
             'idkelas' => $this->idkelas,
             'tahun' => $this->tahun,
-            'ket' => $this->ket,
             'ortu' => $this->ortu,
+            'keterangan_id' => $this->keterangan_id,
         ];
 
         $this->validate();
@@ -75,9 +75,9 @@ class Tablesiswa extends Component
         $this->idkelas = $cari->idkelas;
         $this->tahun = $cari->tahun;
         $this->ortu = $cari->ortu;
-        $this->ket = $cari->ket;
+        $this->keterangan_id = $cari->keterangan_id;
         $this->simpan = 'Update';
-        $this->button = create_button('update', "Gunabayar");
+        $this->button = create_button('update', "Siswa");
         $this->showModal();
     }
 
@@ -116,7 +116,7 @@ class Tablesiswa extends Component
                         'siswa.nis as nis',
                         'siswa.tahun as tahun',
                         'siswa.ortu as ortu',
-                        'siswa.ket as ket',
+                        'siswa.keterangan_id as keterangan_id',
                         'siswa.idkelas as idkelas',
                         'kelas.tingkat as tingkat',
                         'kelas.jurusan as jurusan',
@@ -130,7 +130,7 @@ class Tablesiswa extends Component
                     "view" => 'livewire.table.siswa',
                     "siswas" => $siswas,
                     'kelas' => Kelas::orderBy('tingkat')->orderBy('jurusan')->get(),
-                    'keter' => Keterangan::select('ket')->distinct()->orderBy('ket', 'asc')->get(),
+                    'keter' => Keterangan::orderBy('ket', 'asc')->get(),
                     "data" => array_to_object([
                         'href' => [
                             'create_new' => 'showModal()',
@@ -176,7 +176,7 @@ class Tablesiswa extends Component
         $this->idkelas = '';
         $this->ortu = '';
         $this->tahun = '';
-        $this->ket = '';
+        $this->keterangan_id = '';
         $this->nis = '';
         $this->simpan = 'Simpan';
         $this->button = create_button($this->action, "siswa Baru");

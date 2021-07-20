@@ -14,7 +14,7 @@ class DeleteKetFromSiswaTable extends Migration
     public function up()
     {
         Schema::table('siswa', function (Blueprint $table) {
-            $table->dropColumn('ket');
+            // $table->dropColumn('ket');
         });
     }
 

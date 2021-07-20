@@ -10,7 +10,8 @@ class Keterangan extends Model
     use HasFactory;
     protected $table = 'keterangan';
     protected $guarded = ['id', 'created_at', 'updated_at'];
-    public function siswa(){
+    public function siswa()
+    {
         return $this->hasMany(Siswa::class);
     }
     public static function search($query)

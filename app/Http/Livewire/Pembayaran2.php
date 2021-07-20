@@ -21,6 +21,10 @@ class Pembayaran2 extends Component
     public $wajibbayarf;
     public $jumlahbayar;
     public $jumlahbayarf;
+    public $spp;
+    public $ug;
+    public $ap;
+    public $sr;
     public $action;
     public $button;
 
@@ -106,14 +110,14 @@ class Pembayaran2 extends Component
                 ->get(),
             'gunabayars' => Gunabayar::where('jenisket', 'SPP')->orderBy('urut')->get(),
         ];
-        if (!empty($this->idgunabayar)) {
-            $cari = Gunabayar::findOrFail($this->idgunabayar);
-            $this->wajibbayar = $cari->wajibbayar;
-        }
         $this->jumlahbayarf = 'Rp. ' . number_format(intval($this->jumlahbayar), 0, ".", ".") . ",-";
         //start id siswa
         if (!empty($this->idsiswa)) {
-            $carinis = Siswa::findOrFail($this->idsiswa);
+            $carinis = Siswa::find($this->idsiswa);
+            $this->spp = $carinis->keterangan->spp;
+            $this->ug = $carinis->keterangan->uanggedung;
+            $this->ap = $carinis->keterangan->alatpraktek;
+            $this->sr = $carinis->keterangan->seragam;
             $this->nis = $carinis->nis;
             $this->namasiswa = $carinis->nama;
 
@@ -464,8 +468,23 @@ class Pembayaran2 extends Component
             $this->tseragam = '';
             $this->namasiswa = '';
         }
-
         //end of idsiswa
+        if (!empty($this->idgunabayar)) {
+            $carig = Gunabayar::find($this->idgunabayar);
+            if ($carig->detailket == 'Uang Gedung'){
+                $this->wajibbayar = $this->ug;
+            }
+            elseif ($carig->detailket == 'Alat Praktek'){
+                $this->wajibbayar = $this->ap;
+            }
+            elseif ($carig->detailket == 'Seragam'){
+                $this->wajibbayar = $this->sr;
+            }
+            else {
+                $this->wajibbayar = $this->spp;
+            }
+        }
+
         return view('livewire.pembayaran2', $data);
     }
 }

@@ -14,7 +14,7 @@ class AddKeteranganIdToSiswaTable extends Migration
     public function up()
     {
         Schema::table('siswa', function (Blueprint $table) {
-            $table->integer('keterangan_id');
+            $table->foreignId('keterangan_id');
         });
     }
 
