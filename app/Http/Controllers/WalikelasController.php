@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-require_once __DIR__ . '/vendor/autoload.php';
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 use App\Models\Kelas;
@@ -32,6 +31,8 @@ class WalikelasController extends Controller
     }
     public function savepdf($id)
     {
+        require_once __DIR__ . '/vendor/autoload.php';
+
         $bulan = gmdate('m');
         $bulansurat = '';
         switch ($bulan) {
