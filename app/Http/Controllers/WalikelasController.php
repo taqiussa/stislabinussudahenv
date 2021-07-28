@@ -111,7 +111,7 @@ class WalikelasController extends Controller
         $html = view('pages.cetakpdf.pdf', $data);
         $mpdf = new mpdf();
         $mpdf->WriteHTML($html);
-        $mpdf->Output('Tagihan '. $cari->nama . '.pdf', Destination::DOWNLOAD);
+        $mpdf->Output();
         // return view('pages.cetakpdf.pdf', $data);
     }
 }
