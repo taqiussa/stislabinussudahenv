@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Kelas;
 use App\Models\Gunabayar;
 use App\Models\Keterangan;
+use Mpdf\Mpdf;
+use Mpdf\Output\Destination;
 
 class WalikelasController extends Controller
 {
@@ -105,6 +107,11 @@ class WalikelasController extends Controller
             'gunabayarsppall' => Gunabayar::where('ket','1')->orderBy('urut', 'asc')->get(),
             'gunabayarug' => Gunabayar::where('ket', '2')->get(),
         ];
-        return view('pages.cetakpdf.pdf', $data);
+
+        $html = view('pages.cetakpdf.pdf', $data);
+        $mpdf = new \Mpdf\Mpdf();
+        $mpdf->WriteHTML($html);
+        $mpdf->Output('Tagihan '. $cari->nama . '.pdf', Destination::DOWNLOAD);
+        // return view('pages.cetakpdf.pdf', $data);
     }
 }
