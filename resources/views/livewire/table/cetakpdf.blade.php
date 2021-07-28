@@ -1,5 +1,15 @@
 {{-- Table Data --}}
 <div>
+    <div class="bg-gray-200">
+        <div class="flex flex-col items-center justify-center h-screen">
+            <div class="flex flex-col">
+                <label class="inline-flex items-center mt-3">
+                    <input wire:model='labela' type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" value="Berhasil"><span class="ml-2 text-gray-700">label</span>
+                </label>
+                <button wire:click="cek()" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">Cek</button>
+            </div>
+        </div>
+    </div>
     <x-data-table-spp :data="$data" :model="$cetakpdfs">
         <x-slot name="head">
             <tr>

@@ -28,9 +28,13 @@ class Tablecetakpdf extends Component
     public $sortTahun = '';
     public $sortAsc = false;
     public $search = '';
+    public $labela;
     public $action;
     public $button;
 
+    public function cek(){
+        dd($this->labela);
+    }
     public function sortBy($field)
     {
         if ($this->sortField === $field) {
