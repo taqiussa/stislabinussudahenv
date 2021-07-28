@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Kelas;
 use App\Models\Gunabayar;
 use App\Models\Keterangan;
-use Mpdf\Mpdf;
+use Mpdf\Mpdf as mpdf;
 use Mpdf\Output\Destination;
 
 class WalikelasController extends Controller
@@ -31,8 +31,7 @@ class WalikelasController extends Controller
     }
     public function savepdf($id)
     {
-        require_once __DIR__ . '/vendor/autoload.php';
-
+        
         $bulan = gmdate('m');
         $bulansurat = '';
         switch ($bulan) {
@@ -110,7 +109,7 @@ class WalikelasController extends Controller
         ];
 
         $html = view('pages.cetakpdf.pdf', $data);
-        $mpdf = new \Mpdf\Mpdf();
+        $mpdf = new mpdf();
         $mpdf->WriteHTML($html);
         $mpdf->Output('Tagihan '. $cari->nama . '.pdf', Destination::DOWNLOAD);
         // return view('pages.cetakpdf.pdf', $data);
