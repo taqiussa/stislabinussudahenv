@@ -29,7 +29,7 @@ class WalikelasController extends Controller
             'cetakpdf' => Siswa::class
         ]);
     }
-    public function savepdf($id)
+    public function savepdf($id,$uas,$pas,$pat)
     {
         
         $bulan = gmdate('m');
@@ -91,6 +91,10 @@ class WalikelasController extends Controller
         $tahunsurat = gmdate('Y');
         $data = [
             'nosurat' => '001/SMK.BN/SPO',
+            'bulane' => $bulan,
+            'uas' => $uas,
+            'pas' => $pas,
+            'pat' => $pat,
             'bulansurat' => $bulansurat,
             'tahunsurat' => $tahunsurat,
             'nama' => $cari->nama,
@@ -106,6 +110,10 @@ class WalikelasController extends Controller
             'gunabayarspp' => Gunabayar::whereIn('id',$arrayguna)->orderBy('urut', 'asc')->get(),
             'gunabayarsppall' => Gunabayar::where('ket','1')->orderBy('urut', 'asc')->get(),
             'gunabayarug' => Gunabayar::where('ket', '2')->get(),
+            'gunabayaruji' => Gunabayar::where('ket', '3')->get(),
+            'gunabayarpat' => Gunabayar::where('gunabayar', 'PAT Genap')->get(),
+            'gunabayarpas' => Gunabayar::where('gunabayar', 'PAS Gasal')->get(),
+            'gunabayaruas' => Gunabayar::where('gunabayar', 'Ujian Akhir')->get(),
         ];
 
         // $html = view('pages.cetakpdf.pdf', $data);

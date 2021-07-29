@@ -28,7 +28,9 @@ class Tablecetakpdf extends Component
     public $sortTahun = '';
     public $sortAsc = false;
     public $search = '';
-    public $labela;
+    public $uas = 0;
+    public $pas = 0;
+    public $pat = 0;
     public $action;
     public $button;
 
@@ -66,6 +68,21 @@ class Tablecetakpdf extends Component
                     ->where('idkelas', $this->sortKelas)
                     ->where('tahun', $this->sortTahun)
                     ->paginate($this->perPage);
+                    if(!empty($this->uas)){
+                        $this->uas = 1;
+                    }else{
+                        $this->uas = 0;
+                    }
+                    if(!empty($this->pas)){
+                        $this->pas = 1;
+                    }else{
+                        $this->pas = 0;
+                    }
+                    if(!empty($this->pat)){
+                        $this->pat = 1;
+                    }else{
+                        $this->pat = 0;
+                    }
                 return [
                     "view" => 'livewire.table.cetakpdf',
                     "cetakpdfs" => $cetakpdfs,

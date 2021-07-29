@@ -10,7 +10,7 @@
 
 <table width="100%" style="border-bottom:double; border-width:9px; ">
     <tr>
-        <td rowspan="5"><img src="../image/logo.png"></td>
+        <td rowspan="5"><img src="/image/logo.png"></td>
         <td align="center">
             &nbsp;
         </td>
@@ -106,6 +106,26 @@ Assalamu'alaikum Wr. Wb.<br>
                     </tr>
                 @endif
             @endforeach
+            @foreach ($gunabayaruji as $g)
+                @php
+                    $p = App\Models\Pembayaran::where('nis',$nis)
+                    ->where('idgunabayar',$g->id)
+                    ->where('idkelas',$idkelasx)
+                    ->sum('jumlahbayar');
+                    $cek = intval($g->wajibbayar) - intval($p);
+                @endphp
+                @if ($cek <= 0)
+                @else
+                    <tr>
+                        <td>
+                            {{ $g->gunabayar }} Kelas X-{{  $jurusankelas }}
+                        </td>
+                        <td>
+                            Rp. {{ number_format($cek, 0, ".", ".") . ",-" }}
+                        </td>
+                    </tr>
+                @endif
+            @endforeach
             @foreach ($gunabayarsppall as $g)
                 @php
                     $p = App\Models\Pembayaran::where('nis',$nis)
@@ -115,6 +135,26 @@ Assalamu'alaikum Wr. Wb.<br>
                     $cek = intval($spp) - intval($p);
                 @endphp
                 @if ($cek == 0)
+                @else
+                    <tr>
+                        <td>
+                            {{ $g->gunabayar }} Kelas XI-{{  $jurusankelas }}
+                        </td>
+                        <td>
+                            Rp. {{ number_format($cek, 0, ".", ".") . ",-" }}
+                        </td>
+                    </tr>
+                @endif
+            @endforeach
+            @foreach ($gunabayaruji as $g)
+                @php
+                    $p = App\Models\Pembayaran::where('nis',$nis)
+                    ->where('idgunabayar',$g->id)
+                    ->where('idkelas',$idkelasxi)
+                    ->sum('jumlahbayar');
+                    $cek = intval($g->wajibbayar) - intval($p);
+                @endphp
+                @if ($cek <= 0)
                 @else
                     <tr>
                         <td>
@@ -146,6 +186,52 @@ Assalamu'alaikum Wr. Wb.<br>
                     </tr>
                 @endif
             @endforeach
+            @if ($pas == 1)
+                @foreach ($gunabayarpas as $g)
+                @php
+                    $p = App\Models\Pembayaran::where('nis',$nis)
+                    ->where('idgunabayar',$g->id)
+                    ->where('idkelas',$idkelas)
+                    ->sum('jumlahbayar');
+                    $cek = intval($g->wajibbayar) - intval($p);
+                @endphp
+                @if ($cek <= 0)
+                @else
+                    <tr>
+                        <td>
+                            {{ $g->gunabayar }} Kelas XII-{{  $jurusankelas }}
+                        </td>
+                        <td>
+                            Rp. {{ number_format($cek, 0, ".", ".") . ",-" }}
+                        </td>
+                    </tr>
+                @endif
+                @endforeach
+            @else
+            @endif
+            @if ($uas == 1)
+                @foreach ($gunabayaruas as $g)
+                @php
+                    $p = App\Models\Pembayaran::where('nis',$nis)
+                    ->where('idgunabayar',$g->id)
+                    ->where('idkelas',$idkelas)
+                    ->sum('jumlahbayar');
+                    $cek = intval($g->wajibbayar) - intval($p);
+                @endphp
+                @if ($cek <= 0)
+                @else
+                    <tr>
+                        <td>
+                            {{ $g->gunabayar }} Kelas XII-{{  $jurusankelas }}
+                        </td>
+                        <td>
+                            Rp. {{ number_format($cek, 0, ".", ".") . ",-" }}
+                        </td>
+                    </tr>
+                @endif
+                @endforeach
+            @else
+            @endif
         @elseif ($tingkatkelas == 'XI')
             @foreach ($gunabayarsppall as $g)
                 @php
@@ -156,6 +242,26 @@ Assalamu'alaikum Wr. Wb.<br>
                     $cek = intval($spp) - intval($p);
                 @endphp
                 @if ($cek == 0)
+                @else
+                    <tr>
+                        <td>
+                            {{ $g->gunabayar }} Kelas X-{{  $jurusankelas }}
+                        </td>
+                        <td>
+                            Rp. {{ number_format($cek, 0, ".", ".") . ",-" }}
+                        </td>
+                    </tr>
+                @endif
+            @endforeach
+            @foreach ($gunabayaruji as $g)
+                @php
+                    $p = App\Models\Pembayaran::where('nis',$nis)
+                    ->where('idgunabayar',$g->id)
+                    ->where('idkelas',$idkelasx)
+                    ->sum('jumlahbayar');
+                    $cek = intval($g->wajibbayar) - intval($p);
+                @endphp
+                @if ($cek <= 0)
                 @else
                     <tr>
                         <td>
@@ -187,6 +293,52 @@ Assalamu'alaikum Wr. Wb.<br>
                     </tr>
                 @endif
             @endforeach
+            @if ($pas == 1)
+                @foreach ($gunabayarpas as $g)
+                @php
+                    $p = App\Models\Pembayaran::where('nis',$nis)
+                    ->where('idgunabayar',$g->id)
+                    ->where('idkelas',$idkelas)
+                    ->sum('jumlahbayar');
+                    $cek = intval($g->wajibbayar) - intval($p);
+                @endphp
+                @if ($cek <= 0)
+                @else
+                    <tr>
+                        <td>
+                            {{ $g->gunabayar }} Kelas XI-{{  $jurusankelas }}
+                        </td>
+                        <td>
+                            Rp. {{ number_format($cek, 0, ".", ".") . ",-" }}
+                        </td>
+                    </tr>
+                @endif
+                @endforeach
+            @else
+            @endif
+            @if ($pat == 1)
+                @foreach ($gunabayarpat as $g)
+                @php
+                    $p = App\Models\Pembayaran::where('nis',$nis)
+                    ->where('idgunabayar',$g->id)
+                    ->where('idkelas',$idkelas)
+                    ->sum('jumlahbayar');
+                    $cek = intval($g->wajibbayar) - intval($p);
+                @endphp
+                @if ($cek <= 0)
+                @else
+                    <tr>
+                        <td>
+                            {{ $g->gunabayar }} Kelas XI-{{  $jurusankelas }}
+                        </td>
+                        <td>
+                            Rp. {{ number_format($cek, 0, ".", ".") . ",-" }}
+                        </td>
+                    </tr>
+                @endif
+                @endforeach
+            @else
+            @endif
         @else
             @foreach ($gunabayarspp as $g)
                 @php
@@ -208,6 +360,52 @@ Assalamu'alaikum Wr. Wb.<br>
                     </tr>
                 @endif
             @endforeach
+            @if ($pas == 1)
+                @foreach ($gunabayarpas as $g)
+                @php
+                    $p = App\Models\Pembayaran::where('nis',$nis)
+                    ->where('idgunabayar',$g->id)
+                    ->where('idkelas',$idkelas)
+                    ->sum('jumlahbayar');
+                    $cek = intval($g->wajibbayar) - intval($p);
+                @endphp
+                @if ($cek <= 0)
+                @else
+                    <tr>
+                        <td>
+                            {{ $g->gunabayar }} Kelas X-{{  $jurusankelas }}
+                        </td>
+                        <td>
+                            Rp. {{ number_format($cek, 0, ".", ".") . ",-" }}
+                        </td>
+                    </tr>
+                @endif
+                @endforeach
+            @else
+            @endif
+            @if ($pat == 1)
+                @foreach ($gunabayarpat as $g)
+                @php
+                    $p = App\Models\Pembayaran::where('nis',$nis)
+                    ->where('idgunabayar',$g->id)
+                    ->where('idkelas',$idkelas)
+                    ->sum('jumlahbayar');
+                    $cek = intval($g->wajibbayar) - intval($p);
+                @endphp
+                @if ($cek <= 0)
+                @else
+                    <tr>
+                        <td>
+                            {{ $g->gunabayar }} Kelas X-{{  $jurusankelas }}
+                        </td>
+                        <td>
+                            Rp. {{ number_format($cek, 0, ".", ".") . ",-" }}
+                        </td>
+                    </tr>
+                @endif
+                @endforeach
+            @else
+            @endif
         @endif
         @foreach ($gunabayarug as $g)
         <tr>
@@ -250,7 +448,7 @@ Assalamu'alaikum Wr. Wb.<br>
     Kepala Sekolah,
 </div>
 <div align="right">
-    <img src="../image/TTD BARCODE.jpeg" height="75" width="75"></td>
+    <img src="/image/TTD BARCODE.jpeg" height="75" width="75"></td>
 </div>
 <div align="right">
     Eka Aribawa,S.Pd.I
