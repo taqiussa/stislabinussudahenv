@@ -94,7 +94,7 @@ Assalamu'alaikum Wr. Wb.<br>
                     ->sum('jumlahbayar');
                     $cek = intval($spp) - intval($p);
                 @endphp
-                @if ($cek == 0)
+                @if ($cek <= 0)
                 @else
                     <tr>
                         <td>
@@ -134,7 +134,7 @@ Assalamu'alaikum Wr. Wb.<br>
                     ->sum('jumlahbayar');
                     $cek = intval($spp) - intval($p);
                 @endphp
-                @if ($cek == 0)
+                @if ($cek <= 0)
                 @else
                     <tr>
                         <td>
@@ -174,7 +174,7 @@ Assalamu'alaikum Wr. Wb.<br>
                     ->sum('jumlahbayar');
                     $cek = intval($spp) - intval($p);
                 @endphp
-                @if ($cek == 0)
+                @if ($cek <= 0)
                 @else
                     <tr>
                         <td>
@@ -241,7 +241,7 @@ Assalamu'alaikum Wr. Wb.<br>
                     ->sum('jumlahbayar');
                     $cek = intval($spp) - intval($p);
                 @endphp
-                @if ($cek == 0)
+                @if ($cek <= 0)
                 @else
                     <tr>
                         <td>
@@ -281,7 +281,7 @@ Assalamu'alaikum Wr. Wb.<br>
                     ->sum('jumlahbayar');
                     $cek = intval($spp) - intval($p);
                 @endphp
-                @if ($cek == 0)
+                @if ($cek <= 0)
                 @else
                     <tr>
                         <td>
@@ -348,7 +348,7 @@ Assalamu'alaikum Wr. Wb.<br>
                     ->sum('jumlahbayar');
                     $cek = intval($spp) - intval($p);
                 @endphp
-                @if ($cek == 0)
+                @if ($cek <= 0)
                 @else
                     <tr>
                         <td>
@@ -423,7 +423,7 @@ Assalamu'alaikum Wr. Wb.<br>
                     $cek = intval($seragam) - intval($p);
                 };
             @endphp
-            @if ($cek == 0 || $cek <=0)
+            @if ($cek <= 0 || $cek <=0)
             @else
                 <tr>
                     <td>
