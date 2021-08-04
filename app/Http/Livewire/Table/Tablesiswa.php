@@ -55,6 +55,7 @@ class Tablesiswa extends Component
             'idkelas' => $this->idkelas,
             'tahun' => $this->tahun,
             'ortu' => $this->ortu,
+            'ket' => '',
             'keterangan_id' => $this->keterangan_id,
         ];
 

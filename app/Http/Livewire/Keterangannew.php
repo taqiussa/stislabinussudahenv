@@ -49,14 +49,14 @@ class Keterangannew extends Component
     }
     public function clearVar()
     {
-        $this->button = create_button($this->action, "Pembayaran Baru");
+        $this->button = create_button($this->action, "Keterangan Baru");
     }
     public function tambah(){
 
     }
     public function mount()
     {
-        $this->button = create_button($this->action, "Pembayaran Baru");
+        $this->button = create_button($this->action, "Keterangan Baru");
         // this button untuk menampilkan emit atau message toast 
 
     }
