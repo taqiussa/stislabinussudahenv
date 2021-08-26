@@ -16,6 +16,9 @@ class Keuangan extends Component
     public $saldospp;
     public $saldomasuk;
     public $saldomasuknon;
+    public $saldoug;
+    public $saldoap;
+    public $saldosr;
     public $pengeluaran;
     public $totalpemasukan;
     public $sisasaldo;
@@ -41,6 +44,21 @@ class Keuangan extends Component
             ->sum('jumlahbayar');
         $this->saldomasuknon = Pembayaran::join('gunabayar', 'gunabayar.id', '=', 'pembayaran.idgunabayar')
             ->where('gunabayar.ket', 2)
+            ->whereMonth('pembayaran.tanggalbayar', date('m'))
+            ->whereYear('pembayaran.tanggalbayar', date('Y'))
+            ->sum('jumlahbayar');
+        $this->saldoug = Pembayaran::join('gunabayar', 'gunabayar.id', '=', 'pembayaran.idgunabayar')
+            ->where('gunabayar.gunabayar', 'Uang Gedung')
+            ->whereMonth('pembayaran.tanggalbayar', date('m'))
+            ->whereYear('pembayaran.tanggalbayar', date('Y'))
+            ->sum('jumlahbayar');
+        $this->saldoap = Pembayaran::join('gunabayar', 'gunabayar.id', '=', 'pembayaran.idgunabayar')
+            ->where('gunabayar.gunabayar', 'Alat Praktek')
+            ->whereMonth('pembayaran.tanggalbayar', date('m'))
+            ->whereYear('pembayaran.tanggalbayar', date('Y'))
+            ->sum('jumlahbayar');
+        $this->saldosr = Pembayaran::join('gunabayar', 'gunabayar.id', '=', 'pembayaran.idgunabayar')
+            ->where('gunabayar.gunabayar', 'Seragam')
             ->whereMonth('pembayaran.tanggalbayar', date('m'))
             ->whereYear('pembayaran.tanggalbayar', date('Y'))
             ->sum('jumlahbayar');
@@ -86,12 +104,12 @@ class Keuangan extends Component
                 ->sum('pembayaran.jumlahbayar');
             $this->isPengeluaran = false;
             $this->isPemasukan = true;
-        } elseif ($this->pilihlaporan == 'Non-SPP') {
+        } elseif ($this->pilihlaporan == 'UG') {
             $this->pemasukans = Pembayaran::join('siswa', 'siswa.id', '=', 'pembayaran.idsiswa')
                 ->join('kelas', 'kelas.id', '=', 'pembayaran.idkelas')
                 ->join('gunabayar', 'gunabayar.id', '=', 'pembayaran.idgunabayar')
                 ->whereBetween('pembayaran.tanggalbayar', [$this->tanggalmulai, $this->tanggalakhir])
-                ->where('gunabayar.ket', '2')
+                ->where('gunabayar.gunabayar', 'Uang Gedung')
                 ->select(
                     'pembayaran.id as id',
                     'pembayaran.tanggalbayar as tanggal',
@@ -105,7 +123,53 @@ class Keuangan extends Component
                 ->get();
             $this->laporanpemasukan = Pembayaran::join('gunabayar', 'gunabayar.id', '=', 'pembayaran.idgunabayar')
                 ->whereBetween('pembayaran.tanggalbayar', [$this->tanggalmulai, $this->tanggalakhir])
-                ->where('gunabayar.ket', '2')
+                ->where('gunabayar.gunabayar', 'Uang Gedung')
+                ->sum('pembayaran.jumlahbayar');
+            $this->isPengeluaran = false;
+            $this->isPemasukan = true;
+        } elseif ($this->pilihlaporan == 'AP') {
+            $this->pemasukans = Pembayaran::join('siswa', 'siswa.id', '=', 'pembayaran.idsiswa')
+                ->join('kelas', 'kelas.id', '=', 'pembayaran.idkelas')
+                ->join('gunabayar', 'gunabayar.id', '=', 'pembayaran.idgunabayar')
+                ->whereBetween('pembayaran.tanggalbayar', [$this->tanggalmulai, $this->tanggalakhir])
+                ->where('gunabayar.gunabayar', 'Alat Praktek')
+                ->select(
+                    'pembayaran.id as id',
+                    'pembayaran.tanggalbayar as tanggal',
+                    'pembayaran.jumlahbayar as jumlahbayar',
+                    'pembayaran.tahun as tahun',
+                    'siswa.nama as nama',
+                    'kelas.tingkat as tingkat',
+                    'kelas.jurusan as jurusan',
+                    'gunabayar.gunabayar as gunabayar',
+                )
+                ->get();
+            $this->laporanpemasukan = Pembayaran::join('gunabayar', 'gunabayar.id', '=', 'pembayaran.idgunabayar')
+                ->whereBetween('pembayaran.tanggalbayar', [$this->tanggalmulai, $this->tanggalakhir])
+                ->where('gunabayar.gunabayar', 'Alat Praktek')
+                ->sum('pembayaran.jumlahbayar');
+            $this->isPengeluaran = false;
+            $this->isPemasukan = true;
+        } elseif ($this->pilihlaporan == 'SR') {
+            $this->pemasukans = Pembayaran::join('siswa', 'siswa.id', '=', 'pembayaran.idsiswa')
+                ->join('kelas', 'kelas.id', '=', 'pembayaran.idkelas')
+                ->join('gunabayar', 'gunabayar.id', '=', 'pembayaran.idgunabayar')
+                ->whereBetween('pembayaran.tanggalbayar', [$this->tanggalmulai, $this->tanggalakhir])
+                ->where('gunabayar.gunabayar', 'Seragam')
+                ->select(
+                    'pembayaran.id as id',
+                    'pembayaran.tanggalbayar as tanggal',
+                    'pembayaran.jumlahbayar as jumlahbayar',
+                    'pembayaran.tahun as tahun',
+                    'siswa.nama as nama',
+                    'kelas.tingkat as tingkat',
+                    'kelas.jurusan as jurusan',
+                    'gunabayar.gunabayar as gunabayar',
+                )
+                ->get();
+            $this->laporanpemasukan = Pembayaran::join('gunabayar', 'gunabayar.id', '=', 'pembayaran.idgunabayar')
+                ->whereBetween('pembayaran.tanggalbayar', [$this->tanggalmulai, $this->tanggalakhir])
+                ->where('gunabayar.gunabayar', 'Seragam')
                 ->sum('pembayaran.jumlahbayar');
             $this->isPengeluaran = false;
             $this->isPemasukan = true;
