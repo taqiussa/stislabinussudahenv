@@ -106,7 +106,7 @@ Assalamu'alaikum Wr. Wb.<br>
                     </tr>
                 @endif
             @endforeach
-            @foreach ($gunabayaruji as $g)
+            {{-- @foreach ($gunabayaruji as $g)
                 @php
                     $p = App\Models\Pembayaran::where('nis',$nis)
                     ->where('idgunabayar',$g->id)
@@ -125,7 +125,7 @@ Assalamu'alaikum Wr. Wb.<br>
                         </td>
                     </tr>
                 @endif
-            @endforeach
+            @endforeach --}}
             @foreach ($gunabayarsppall as $g)
                 @php
                     $p = App\Models\Pembayaran::where('nis',$nis)
@@ -146,7 +146,7 @@ Assalamu'alaikum Wr. Wb.<br>
                     </tr>
                 @endif
             @endforeach
-            @foreach ($gunabayaruji as $g)
+            {{-- @foreach ($gunabayaruji as $g)
                 @php
                     $p = App\Models\Pembayaran::where('nis',$nis)
                     ->where('idgunabayar',$g->id)
@@ -165,7 +165,7 @@ Assalamu'alaikum Wr. Wb.<br>
                         </td>
                     </tr>
                 @endif
-            @endforeach
+            @endforeach --}}
             @foreach ($gunabayarspp as $g)
                 @php
                     $p = App\Models\Pembayaran::where('nis',$nis)
@@ -186,7 +186,7 @@ Assalamu'alaikum Wr. Wb.<br>
                     </tr>
                 @endif
             @endforeach
-            @if ($pas == 1)
+            {{-- @if ($pas == 1)
                 @foreach ($gunabayarpas as $g)
                 @php
                     $p = App\Models\Pembayaran::where('nis',$nis)
@@ -231,7 +231,7 @@ Assalamu'alaikum Wr. Wb.<br>
                 @endif
                 @endforeach
             @else
-            @endif
+            @endif --}}
         @elseif ($tingkatkelas == 'XI')
             @foreach ($gunabayarsppall as $g)
                 @php
@@ -253,7 +253,7 @@ Assalamu'alaikum Wr. Wb.<br>
                     </tr>
                 @endif
             @endforeach
-            @foreach ($gunabayaruji as $g)
+            {{-- @foreach ($gunabayaruji as $g)
                 @php
                     $p = App\Models\Pembayaran::where('nis',$nis)
                     ->where('idgunabayar',$g->id)
@@ -272,7 +272,7 @@ Assalamu'alaikum Wr. Wb.<br>
                         </td>
                     </tr>
                 @endif
-            @endforeach
+            @endforeach --}}
             @foreach ($gunabayarspp as $g)
                 @php
                     $p = App\Models\Pembayaran::where('nis',$nis)
@@ -293,7 +293,7 @@ Assalamu'alaikum Wr. Wb.<br>
                     </tr>
                 @endif
             @endforeach
-            @if ($pas == 1)
+            {{-- @if ($pas == 1)
                 @foreach ($gunabayarpas as $g)
                 @php
                     $p = App\Models\Pembayaran::where('nis',$nis)
@@ -338,7 +338,7 @@ Assalamu'alaikum Wr. Wb.<br>
                 @endif
                 @endforeach
             @else
-            @endif
+            @endif --}}
         @else
             @foreach ($gunabayarspp as $g)
                 @php
@@ -360,7 +360,7 @@ Assalamu'alaikum Wr. Wb.<br>
                     </tr>
                 @endif
             @endforeach
-            @if ($pas == 1)
+            {{-- @if ($pas == 1)
                 @foreach ($gunabayarpas as $g)
                 @php
                     $p = App\Models\Pembayaran::where('nis',$nis)
@@ -405,7 +405,7 @@ Assalamu'alaikum Wr. Wb.<br>
                 @endif
                 @endforeach
             @else
-            @endif
+            @endif --}}
         @endif
         @foreach ($gunabayarug as $g)
         <tr>

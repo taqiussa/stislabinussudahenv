@@ -29,7 +29,7 @@
                 <input wire:model="search" class="form-control shadow-dark" type="text" placeholder="Pencarian...">
             </div>
         </div>
-        <div class="row">
+        {{-- <div class="row">
             <div class="col form-inline">
                 Tagihan Tambahan : &nbsp;
                 <input wire:model="pas" type="checkbox" class="mr-2" id="pas" value="1">
@@ -41,7 +41,7 @@
                 <input wire:model="uas" type="checkbox" class="mr-2" id="uas" value="1">
                 <label for="uas" class="mr-4"> Ujian Akhir Sekolah (Kelas XII)</label>
             </div>
-        </div>
+        </div> --}}
         <div class="row">
             <div class="table-responsive">
                 <table class="table text-sm text-gray-600 divide-y divide-gray-200 table-striped">
