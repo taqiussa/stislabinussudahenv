@@ -195,7 +195,7 @@
             <label class="block mb-2 text-xs font-bold tracking-wide uppercase text-grey-darker" for="grid-state" >
                 Tanggal
                 </label>
-                <div class="flex flex-col w-1/2 mx-1 mb-2 text-center border-b border-teal-500">
+                <div class="flex flex-col mx-1 mb-2 text-center border-b border-teal-500">
                     <input wire:model.debounce.200ms='tanggalmulai' type="date" class="w-full px-1 py-1 mr-3 leading-tight text-gray-700 bg-transparent border-none appearance-none focus:outline">
                 </div>
         </div>
@@ -203,7 +203,7 @@
             <label class="block mb-2 text-xs font-bold tracking-wide uppercase text-grey-darker" for="grid-state">
                 Sampai dengan
                 </label>
-                <div class="flex flex-col w-1/2 mx-1 mb-2 text-center border-b border-teal-500">
+                <div class="flex flex-col mx-1 mb-2 text-center border-b border-teal-500">
                     <input wire:model.debounce.200ms='tanggalakhir' type="date" class="w-full px-1 py-1 mr-3 leading-tight text-gray-700 bg-transparent border-none appearance-none focus:outline">
                 </div>
         </div>
@@ -219,6 +219,11 @@
                     <option value="SR"> Seragam </option>
                     <option value="Pengeluaran"> Pengeluaran </option>
                 </select>
+        </div>
+        <div class="px-3 md:w-1/4 mt-4">
+            <a wire:click="export_excel()" class="shadow-none -ml- btn btn-success">
+                <span class="fas fa-download"></span> Download 
+            </a>
         </div>
     </div>
     @if ($isPemasukan)

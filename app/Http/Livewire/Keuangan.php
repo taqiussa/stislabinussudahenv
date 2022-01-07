@@ -2,10 +2,12 @@
 
 namespace App\Http\Livewire;
 
+use App\Exports\PemasukanExport;
 use App\Models\Pembayaran;
 use App\Models\Pengeluaran;
 use App\Models\Siswa;
 use Livewire\Component;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Keuangan extends Component
 {
@@ -30,6 +32,9 @@ class Keuangan extends Component
     public $isPengeluaran = 0;
     public $laporanpemasukan;
     public $laporanpengeluaran;
+    public $namafile;
+    public $exmodel;
+    public $exgunabayar;
     public function mount()
     {
         $this->tanggalmulai = gmdate('Y-m-d');
@@ -192,5 +197,29 @@ class Keuangan extends Component
             'lappengeluaran' => $this->laporanpengeluaran,
         ];
         return view('livewire.keuangan', $data);
+    }
+
+    public function export_excel(){
+        if($this->pilihlaporan == 'Pengeluaran'){
+            $this->exmodel = 'Pengeluaran';
+            $this->namafile = 'Pengeluaran.xlsx';
+        }
+        elseif($this->pilihlaporan == 'SPP'){
+            $this->exmodel = 'SPP';
+            $this->namafile = 'Pemasukan_SPP.xlsx';
+        }
+        elseif($this->pilihlaporan == 'UG'){
+            $this->exmodel = 'UG';
+            $this->namafile = 'Pemasukan_UG.xlsx';
+        }
+        elseif($this->pilihlaporan == 'AP'){
+            $this->exmodel = 'AP';
+            $this->namafile = 'Pemasukan_AP.xlsx';
+        }
+        elseif($this->pilihlaporan == 'SR'){
+            $this->exmodel = 'SR';
+            $this->namafile = 'Pemasukan_Seragam.xlsx';
+        }
+        return Excel::download(new PemasukanExport($this->tanggalmulai, $this->tanggalakhir, $this->exmodel), $this->namafile);
     }
 }

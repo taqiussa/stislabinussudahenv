@@ -34,9 +34,9 @@
                         ->sum('jumlahbayar');
                         @endphp
                         @if (!empty($jml))
-                        <td>Rp. {{ number_format($jml, 0, ".", ".") . ",-" }}</td>
+                        <td>{{ $jml }}</td>
                         @else
-                        <td>Rp. {{ number_format(0, 0, ".", ".") . ",-" }}</td>
+                        <td>{{ 0 }}</td>
                         @endif
                     @endforeach
                     @foreach ($gunans2 as $g)
@@ -47,9 +47,9 @@
                         ->sum('jumlahbayar');
                         @endphp
                         @if (!empty($jml))
-                        <td>Rp. {{ number_format($jml, 0, ".", ".") . ",-" }}</td>
+                        <td>{{ $jml }}</td>
                         @else
-                        <td>Rp. {{ number_format(0, 0, ".", ".") . ",-" }}</td>
+                        <td>{{ 0 }}</td>
                         @endif
                     @endforeach
                 </tr>
